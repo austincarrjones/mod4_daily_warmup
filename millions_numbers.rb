@@ -48,17 +48,14 @@ def find_matches(array1, array2, array3)
     v >= 3 # // O(1)
   end
   matches.keys 
-  # binding.pry
 end
 
 # puts find_matches(nums_1, nums_2, nums_3)
 
-# Big O = O(1) + O (1) + O(n) = O(n) space = 1x
-
 #  -----------------------------------------------------
 
-nums_1 = Array.new(100) { rand(1..100) }  # 1 million elements between 1 and 1000
-nums_2 = Array.new(100) { rand(1..100) }  # Another array of 1 million elements
-nums_3 = Array.new(100) { rand(1..100) }  # Third array of 1 million elements
+nums_1 = Array.new(1000000) { rand(1..1000000) }  # 1 million elements between 1 and 1000
+nums_2 = Array.new(1000000) { rand(1..1000000) }  # Another array of 1 million elements
+nums_3 = Array.new(1000000) { rand(1..1000000) }  # Third array of 1 million elements
 
 print find_matches(nums_1, nums_2, nums_3)
