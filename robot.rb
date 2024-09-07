@@ -1,3 +1,4 @@
+require 'pry'
 # In this challenge, you are working with a computer simulation of a mobile robot. 
 # The robot moves on a plane, and its movements are described by a command string consisting of one or more of the following letters:
 
@@ -51,6 +52,8 @@ def turn_left(current_direction)
     "East"
   elsif current_direction == "East"
     "North"
+  else
+    raise "Robot broken. Unknown direction: #{current_direction}"
   end
 end
 
@@ -63,6 +66,8 @@ def turn_right(current_direction)
     "West"
   elsif current_direction == "West"
     "North"
+  else
+    raise "Robot broken. Unknown direction: #{current_direction}"
   end
 end
 
@@ -74,18 +79,24 @@ def return_to_origin?(commands)
   commands.chars.each do |command|
     if command == "G"
       if current_direction == "North"
-        y + 1
+        y += 1
       elsif current_direction == "West"
-        x - 1
+        x -= 1
       elsif current_direction == "South"
-        y - 1
+        y -= 1
       elsif current_direction == "East"
-        x + 1
+        x += 1
       end
     elsif command == "L"
-      current direction = turn_left(current_direction)
+      current_direction = turn_left(current_direction)
     elsif command == "R"
-      current direction = turn_right(current_direction)
+      current_direction = turn_right(current_direction)
     end
   end
+  # binding.pry
+  x == 0 && y == 0
 end
+
+puts return_to_origin?("GRGLG")
+
+puts return_to_origin?("GRGRGRG")
