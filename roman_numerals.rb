@@ -33,20 +33,56 @@
 # (43) -> length 2, "tens" position "XXXX" = 40. "ones" position = III. 
 # if tens position = 4, then assign XL
 
+# def to_roman(num)
+#   string = num.to_s
+#   array_chars = string.chars
+#   array_digits = array_chars.map do |char|
+#     char.to_i
+#   end
+#   array_digits.each do |digit|
+
+#   end
+# end
+
+# print to_roman(1235)
+# [1, 2, 3, 5]
+
+# if array_digits.length == 1
+
+# end
+
+# -----------------------------------------
+
+# "correct answer"
+
 def to_roman(num)
-  string = num.to_s
-  array_chars = string.chars
-  array_digits = array_chars.map do |char|
-    char.to_i
-  end
-  array_digits.each do |digit|
+  roman_mapping = {
+    1000 => 'M',
+    900  => 'CM',
+    500  => 'D',
+    400  => 'CD',
+    100  => 'C',
+    90   => 'XC',
+    50   => 'L',
+    40   => 'XL',
+    10   => 'X',
+    9    => 'IX',
+    5    => 'V',
+    4    => 'IV',
+    1    => 'I'
+  }
 
+  result = ''
+  roman_mapping.each do |value, symbol|
+    while num >= value
+      result += symbol
+      num -= value
+    end
   end
+  result
 end
 
-print to_roman(1235)
-[1, 2, 3, 5]
-
-if array_digits.length == 1
-
-end
+puts to_roman(11)
+puts to_roman(100)
+puts to_roman(1549)
+puts to_roman(2920)
