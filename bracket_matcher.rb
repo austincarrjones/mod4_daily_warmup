@@ -39,3 +39,24 @@
 # ---------------------------------
 
 # I was not following the exact instructions for that last one. I'll have to try again with the stack example (GPT)
+
+def bracket_match?(input)
+  # Define a hash to map closing brackets to their corresponding opening brackets
+  matching_brackets = { ')' => '(', ']' => '[', '}' => '{' }
+  
+  # Initialize an empty stack
+  stack = []
+
+  # Iterate over each character in the input string
+  input.chars.each do |char|
+    if matching_brackets.value?(char)  # If it's an opening bracket
+      stack.push(char)  # Push it onto the stack
+    elsif matching_brackets.key?(char)  # If it's a closing bracket
+      # Check if the stack is empty or the top of the stack doesn't match the closing bracket
+      return false if stack.empty? || stack.pop != matching_brackets[char]
+    end
+  end
+
+  # If the stack is empty at the end, all brackets were properly matched
+  stack.empty?
+end
