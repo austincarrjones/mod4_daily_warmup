@@ -38,25 +38,60 @@
 
 # ---------------------------------
 
-# I was not following the exact instructions for that last one. I'll have to try again with the stack example (GPT)
+# I was not following the exact instructions for that last one. 
+# I was fixated on symmetry. I'll have to try again with the stack example (GPT)
+
+# def bracket_match?(input)
+#   # Define a hash to map closing brackets to their corresponding opening brackets
+#   matching_brackets = { ')' => '(', ']' => '[', '}' => '{' } 
+#   # Initialize an empty stack
+#   stack = []
+#   # Iterate over each character in the input string
+#   input.chars.each do |char|
+#     if matching_brackets.value?(char)  # If it's an opening bracket
+#       stack.push(char)  # Push it onto the stack
+#     elsif matching_brackets.key?(char)  # If it's a closing bracket
+#       # Check if the stack is empty or the top of the stack doesn't match the closing bracket
+#       return false if stack.empty? || stack.pop != matching_brackets[char]
+#     end
+#   end
+#   # If the stack is empty at the end, all brackets were properly matched
+#   stack.empty?
+# end
+
+# puts bracket_match?('({[]}{[]})')
+# puts bracket_match?('({[]{[]})')
+# puts bracket_match?('){[]}{[]}(')
+
 
 def bracket_match?(input)
-  # Define a hash to map closing brackets to their corresponding opening brackets
-  matching_brackets = { ')' => '(', ']' => '[', '}' => '{' }
-  
-  # Initialize an empty stack
+  # Define a hash where the keys are opening brackets and values are the corresponding closing brackets
+  matching_brackets = { '(' => ')', '[' => ']', '{' => '}' }
+  # Initialize an empty stack to keep track of opening brackets
   stack = []
-
   # Iterate over each character in the input string
   input.chars.each do |char|
-    if matching_brackets.value?(char)  # If it's an opening bracket
-      stack.push(char)  # Push it onto the stack
-    elsif matching_brackets.key?(char)  # If it's a closing bracket
-      # Check if the stack is empty or the top of the stack doesn't match the closing bracket
-      return false if stack.empty? || stack.pop != matching_brackets[char]
+    # If the character is an opening bracket (i.e., a key in the hash)
+    if matching_brackets.key?(char)
+      # Push the opening bracket onto the stack
+      stack.push(char)
+    # If the character is a closing bracket
+    elsif matching_brackets.value?(char)
+      # If the stack is empty, it means there's no matching opening bracket
+      return false if stack.empty?
+      # Pop the last opening bracket from the stack
+      last_opening_bracket = stack.pop
+      # Check if the current closing bracket matches the expected one
+      if matching_brackets[last_opening_bracket] != char
+        # Return false if the brackets don't match
+        return false
+      end
     end
   end
-
   # If the stack is empty at the end, all brackets were properly matched
   stack.empty?
 end
+
+puts bracket_match?('({[]}{[]})')
+puts bracket_match?('({[]{[]})')
+puts bracket_match?('){[]}{[]}(')
