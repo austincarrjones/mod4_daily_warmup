@@ -36,6 +36,8 @@
 
 # I wonder if stacks would be useful here...hmm maybe not. 
 
+require "pry"
+
 
 array_matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 # array_matrix.length = 3
@@ -52,6 +54,7 @@ def snail(array_matrix)
     result += array_matrix.pop.reverse if array_matrix.any? # get the last row, and then reverse it.
     
     array_matrix.reverse.each do |row| 
+      binding.pry
       result << row.shift
     end
   end
