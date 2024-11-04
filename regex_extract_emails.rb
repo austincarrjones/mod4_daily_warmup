@@ -21,9 +21,11 @@
 
 
 def extract_emails(string)
-  
+  email_regex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:\.[A-Za-z]{2,})?\b/
+  string.scan(email_regex)
 end
 
+print extract_emails("Contact us at support@example.com or sales@shop.co.uk for more info.")
 
 
 # --------------------------------------
