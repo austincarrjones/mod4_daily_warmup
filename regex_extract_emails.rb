@@ -27,7 +27,6 @@ end
 
 print extract_emails("Contact us at support@example.com or sales@shop.co.uk for more info.")
 
-
 # --------------------------------------
 # Follow Up
 
