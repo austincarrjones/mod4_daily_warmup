@@ -49,3 +49,31 @@ receipts = [4.85, 11.05, 13.75, 17.75, 18.25, 19.40, 28.25, 40.30, 75.00]
 	# •	Generate combinations of menu items and their quantities.
 	# •	Find the combination(s) that add up to the exact receipt value.
 
+# coming back post new parent break
+
+# GPT solution - type out manually and see if you understand it
+
+def find_combination(menu, receipt, current_combination = {}, start_index = 0)
+# Base case: If the receipt is exactly 0, return the combination
+  return current_combination if receipt.round(2) == 0
+
+  # Recursive case: Try adding each menu item from the given index
+  menu_keys = menu.keys
+  (start_index...menu_keys.size).each do |i|
+    # Retrieve the current menu item and its price.
+    item = menu_keys[i]
+    price = menu[item]
+
+  #Check if adding the item keeps the total under or equal to the receipt value.
+  if price <= receipt
+    #Add the item to the current combination or increment its count.
+    current_combination[item] ||= 0
+    current_combination[item] += 1
+
+    #Recur with the remaining receipt value reduced by the price of this item.
+    result = find_combination(menu, (receipt - price).round(2), current_combination, i)
+
+    # If a valid 
+
+  end
+end
